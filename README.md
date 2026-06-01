@@ -53,6 +53,44 @@ Après chaque modif : `npm run build` puis rechargez l'inspecteur.
 > C'est une **intention métier** (`synthese_portefeuille_client`).
 > On expose **le métier**, pas **le SI brut**.
 
+## Tester votre MCP dans Copilot (VS Code)
+
+Une fois vos tools/resources/prompts codés, branchez le serveur à **GitHub Copilot**
+pour le piloter en langage naturel.
+
+**Prérequis :** GitHub Copilot installé et connecté · `npm run build` exécuté
+(le fichier `dist/index.js` doit exister).
+
+1. **La config est déjà fournie** dans `.vscode/mcp.json` :
+   ```json
+   {
+     "servers": {
+       "conseiller-assist": {
+         "type": "stdio",
+         "command": "node",
+         "args": ["${workspaceFolder}/dist/index.js"]
+       }
+     }
+   }
+   ```
+   Rien à modifier : ouvrez simplement le dossier du projet dans VS Code.
+
+2. **Démarrer le serveur** : cliquez sur le bouton **▶ Start** qui apparaît au-dessus de
+   `"conseiller-assist"` dans `mcp.json` (ou `Cmd/Ctrl+Shift+P` → **MCP: List Servers** →
+   *Start*). Au 1er lancement, **confirmez que vous faites confiance au serveur**.
+
+3. **Tester dans Copilot Chat — en mode Agent** (sélecteur en haut du chat) :
+   - **Tools** → bouton **Configure Tools** → cochez vos tools, puis demandez par ex.
+     *« Fais-moi la synthèse du portefeuille du client CLI-001. »*
+   - **Resources** → **Add Context** → **MCP Resources** → choisissez `cnp://client/...`.
+   - **Prompts** → tapez `/conseiller-assist.synthese-client-avant-rdv`.
+
+4. **Boucle de dev** : après chaque modif de `src/index.ts` → `npm run build` →
+   **MCP: List Servers** → *Restart* sur `conseiller-assist` → retestez.
+
+> Tool absent ? 3 causes habituelles : build pas refait · serveur pas redémarré ·
+> chat pas en **mode Agent**.
+
 ## En cas de blocage
 
 - `npm run build` affiche une erreur ? Lisez le numéro de ligne, c'est presque toujours
