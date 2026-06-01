@@ -1,0 +1,19 @@
+{
+  "id": "SIN-2025-002",
+  "contratLie": "CTR-2024-003",
+  "clientLie": "CLI-003",
+  "dateDeclaration": "2025-03-22",
+  "type": "rachat_partiel",
+  "description": "Demande de rachat partiel 30000€ pour acquisition immobilière",
+  "statut": "valide",
+  "montantReclame": 30000,
+  "montantValide": 30000,
+  "documentsRecus": ["demande-signee.pdf", "justificatif-projet.pdf", "rib.pdf", "piece-identite.pdf"],
+  "documentsManquants": [],
+  "expert": null,
+  "commentaires": [
+    {"date": "2025-03-22", "auteur": "gestionnaire-2", "texte": "Dossier complet réceptionné"},
+    {"date": "2025-04-05", "auteur": "gestionnaire-2", "texte": "Validation conformité OK - mise en paiement programmée"},
+    {"date": "2025-04-12", "auteur": "gestionnaire-2", "texte": "Versement effectué - dossier clos"}
+  ]
+}

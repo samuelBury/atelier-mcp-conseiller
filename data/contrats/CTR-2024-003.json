@@ -1,0 +1,21 @@
+{
+  "numero": "CTR-2024-003",
+  "type": "Assurance Vie - Capitalisation",
+  "souscripteur": "CLI-003",
+  "dateEffet": "2015-06-22",
+  "dateAnniversaire": "2025-06-22",
+  "primeAnnuelle": 12000,
+  "capitalGaranti": 180000,
+  "beneficiaires": ["Conjoint", "Association BENEFIT (10%)"],
+  "clauses": [
+    "Clause bénéficiaire démembrée",
+    "Option de sortie en rente viagère",
+    "Garantie taux minimum 1.5%"
+  ],
+  "statut": "en_revision",
+  "derniereModification": "2025-05-10",
+  "commentaires": [
+    {"date": "2025-05-10", "auteur": "conseiller-7", "texte": "Demande de transfert PER en cours - validation conformité requise"},
+    {"date": "2025-02-14", "auteur": "conseiller-7", "texte": "Anomalie détectée sur calcul revalorisation 2024"}
+  ]
+}

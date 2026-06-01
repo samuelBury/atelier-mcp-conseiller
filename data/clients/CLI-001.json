@@ -1,0 +1,18 @@
+{
+  "id": "CLI-001",
+  "nom": "Dupont",
+  "prenom": "Jean",
+  "dateNaissance": "1972-04-18",
+  "email": "jean.dupont@example.com",
+  "telephone": "06 12 34 56 78",
+  "adresse": "12 rue des Lilas, 44000 Nantes",
+  "conseillerAttribue": "conseiller-23",
+  "segment": "premium",
+  "contratsLies": ["CTR-2024-001"],
+  "scoreEngagement": 78,
+  "dernierContact": "2024-09-12",
+  "preferences": {
+    "canalPrefere": "telephone",
+    "frequenceRevue": "annuelle"
+  }
+}

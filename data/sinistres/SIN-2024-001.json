@@ -1,0 +1,18 @@
+{
+  "id": "SIN-2024-001",
+  "contratLie": "CTR-2024-002",
+  "clientLie": "CLI-002",
+  "dateDeclaration": "2024-08-15",
+  "type": "incapacite_temporaire",
+  "description": "Arrêt de travail suite à intervention chirurgicale - 6 semaines prévues",
+  "statut": "en_cours_instruction",
+  "montantReclame": 4800,
+  "montantValide": null,
+  "documentsRecus": ["certificat-medical.pdf", "arret-travail.pdf", "rib.pdf"],
+  "documentsManquants": ["attestation-employeur"],
+  "expert": null,
+  "commentaires": [
+    {"date": "2024-08-15", "auteur": "gestionnaire-4", "texte": "Dossier réceptionné - en attente attestation employeur"},
+    {"date": "2024-09-02", "auteur": "gestionnaire-4", "texte": "Relance client pour document manquant"}
+  ]
+}

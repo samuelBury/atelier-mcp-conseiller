@@ -1,0 +1,20 @@
+{
+  "numero": "CTR-2024-002",
+  "type": "Prévoyance Famille",
+  "souscripteur": "CLI-002",
+  "dateEffet": "2020-11-08",
+  "dateAnniversaire": "2025-11-08",
+  "primeAnnuelle": 1200,
+  "capitalGaranti": 150000,
+  "beneficiaires": ["Conjoint survivant", "Enfants au prorata"],
+  "clauses": [
+    "Garantie décès toutes causes",
+    "Garantie invalidité absolue et définitive",
+    "Exclusion sports extrêmes"
+  ],
+  "statut": "actif",
+  "derniereModification": "2025-01-20",
+  "commentaires": [
+    {"date": "2025-01-20", "auteur": "conseiller-15", "texte": "Mise à jour bénéficiaires - naissance 2e enfant"}
+  ]
+}

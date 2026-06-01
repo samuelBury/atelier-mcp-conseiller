@@ -1,0 +1,18 @@
+{
+  "id": "CLI-003",
+  "nom": "Moreau",
+  "prenom": "Pierre",
+  "dateNaissance": "1958-12-30",
+  "email": "pierre.moreau@example.com",
+  "telephone": "02 40 11 22 33",
+  "adresse": "27 boulevard du Parc, 44200 Nantes",
+  "conseillerAttribue": "conseiller-7",
+  "segment": "premium",
+  "contratsLies": ["CTR-2024-003"],
+  "scoreEngagement": 92,
+  "dernierContact": "2025-05-10",
+  "preferences": {
+    "canalPrefere": "rdv-physique",
+    "frequenceRevue": "trimestrielle"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "numero": "CTR-2024-001",
+  "type": "Assurance Vie - Retraite Plus",
+  "souscripteur": "CLI-001",
+  "dateEffet": "2018-03-15",
+  "dateAnniversaire": "2025-03-15",
+  "primeAnnuelle": 4800,
+  "capitalGaranti": 75000,
+  "beneficiaires": ["Marie Dupont", "Lucas Dupont"],
+  "clauses": [
+    "Clause bénéficiaire désignée",
+    "Garantie plancher",
+    "Option arbitrage libre"
+  ],
+  "statut": "actif",
+  "derniereModification": "2024-09-12",
+  "commentaires": [
+    {"date": "2024-09-12", "auteur": "conseiller-23", "texte": "Client souhaite augmenter la prime de 200€/mois"},
+    {"date": "2024-06-01", "auteur": "conseiller-23", "texte": "RDV revue annuelle effectué - satisfaction client confirmée"}
+  ]
+}

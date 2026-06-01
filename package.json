@@ -1,0 +1,23 @@
+{
+  "name": "atelier-mcp-conseiller",
+  "version": "1.0.0",
+  "description": "Atelier design board — MCP Conseiller Assist (squelette à compléter) — CIDFP",
+  "type": "module",
+  "bin": {
+    "atelier-mcp-conseiller": "./dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "tsc && node dist/index.js",
+    "inspect": "tsc && npx @modelcontextprotocol/inspector node dist/index.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0",
+    "zod": "^3.23.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "typescript": "^5.3.0"
+  }
+}
