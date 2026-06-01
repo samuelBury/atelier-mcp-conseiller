@@ -91,6 +91,31 @@ pour le piloter en langage naturel.
 > Tool absent ? 3 causes habituelles : build pas refait · serveur pas redémarré ·
 > chat pas en **mode Agent**.
 
+### Déclencher chaque primitive à coup sûr
+
+Rappel : le modèle appelle les **Tools** lui-même, mais les **Resources** et **Prompts**
+se déclenchent **par l'utilisateur**. Voici comment ne pas se rater.
+
+**🔧 Tool** — nommez-le explicitement dans votre demande :
+> *« Utilise l'outil `synthese_portefeuille_client` sur le client CLI-001. »*
+
+**📚 Resource** — vous l'attachez vous-même comme contexte :
+1. Bouton **« Add Context… »** (📎) sous la zone de saisie du chat.
+2. Choisir **« MCP Resources »** *(visible uniquement si le serveur est démarré)*.
+3. Sélectionner la resource (ex. `cnp://client/{id}`).
+4. ⚠️ Nos resources sont **templatées** (`{id}`, `{numero}`…) : VS Code vous
+   **demande alors de saisir la valeur** (ex. `CLI-001`) avant de l'attacher. C'est normal.
+5. Posez votre question : la resource est dans le contexte, donc utilisée à coup sûr.
+
+**⌨️ Prompt** — c'est une slash-command :
+1. Tapez **`/`** dans le chat → la liste affiche `conseiller-assist.<nom-du-prompt>`.
+2. Sélectionnez, ex. `conseiller-assist.synthese-client-avant-rdv`.
+3. Si le prompt a des paramètres (`clientId`), VS Code vous les **demande** (ex. `CLI-001`).
+4. Le message construit par votre serveur est injecté dans le chat, prêt à être envoyé.
+
+> 100 % déterministe pour vérifier en dev : `npm run inspect` → onglets
+> **Resources / Tools / Prompts** (listing + exécution garantis, sans LLM).
+
 ## En cas de blocage
 
 - `npm run build` affiche une erreur ? Lisez le numéro de ligne, c'est presque toujours
