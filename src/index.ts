@@ -65,6 +65,30 @@ async function getAllSinistresFor(clientId: string) {
   return all.filter((s) => s.clientLie === clientId);
 }
 
+// --- Ajouts CONS-204 (briefing conseiller) ---
+async function getAllClients(): Promise<any[]> {
+  const files = await listDir("clients");
+  return Promise.all(files.map((f) => readJson(join(DATA_DIR, "clients", f))));
+}
+async function getAllContrats(): Promise<any[]> {
+  const files = await listDir("contrats");
+  return Promise.all(files.map((f) => readJson(join(DATA_DIR, "contrats", f))));
+}
+async function getAllSinistres(): Promise<any[]> {
+  const files = await listDir("sinistres");
+  return Promise.all(files.map((f) => readJson(join(DATA_DIR, "sinistres", f))));
+}
+function joursDepuis(dateISO: string): number {
+  return Math.floor((Date.now() - new Date(dateISO).getTime()) / 86_400_000);
+}
+function joursAvant(dateAnnivISO: string): number {
+  const today = new Date();
+  const d = new Date(dateAnnivISO);
+  d.setFullYear(today.getFullYear());
+  if (d < today) d.setFullYear(today.getFullYear() + 1);
+  return Math.ceil((d.getTime() - today.getTime()) / 86_400_000);
+}
+
 /* ═══════════════════════════════════════════════════════════════════════
  *  1) RESOURCES — des objets métier adressables par URI (lecture seule)
  * ═══════════════════════════════════════════════════════════════════════ */
@@ -135,6 +159,39 @@ ${sinistres.map((s) => `- ${s.id} — ${s.type} | statut ${s.statut}`).join("\n"
 - Capital garanti total : ${capitalTotal}€`;
 
     return { content: [{ type: "text", text: synthese }] };
+  }
+);
+
+/* ---- CONS-204 — briefing du matin du conseiller (implémente la spec) -- */
+server.tool(
+  "briefing_journee_conseiller",
+  "Briefing priorisé de la journée d'un conseiller : clients à relancer, sinistres bloqués, anniversaires de contrat proches (lecture seule, son portefeuille).",
+  { conseillerId: z.string() },
+  async ({ conseillerId }) => {
+    const clients = (await getAllClients()).filter((c) => c.conseillerAttribue === conseillerId);
+    const ids = new Set(clients.map((c) => c.id));
+
+    const aRelancer = clients.filter((c) => joursDepuis(c.dernierContact) > 90);
+    const sinistresBloques = (await getAllSinistres())
+      .filter((s) => ids.has(s.clientLie) && (s.documentsManquants || []).length > 0);
+    const anniv = (await getAllContrats())
+      .filter((c) => ids.has(c.souscripteur))
+      .map((c) => ({ c, j: joursAvant(c.dateAnniversaire) }))
+      .filter((x) => x.j <= 45)
+      .sort((a, b) => a.j - b.j);
+
+    const briefing = `# Briefing du jour — ${conseillerId}
+
+## 🔁 À relancer (clients > 90 j sans contact)
+${aRelancer.length ? aRelancer.map((c) => `- ${c.id} ${c.prenom} ${c.nom} (dernier contact ${c.dernierContact})`).join("\n") : "- Aucun · ✅"}
+
+## 📄 Sinistres bloqués (documents manquants)
+${sinistresBloques.length ? sinistresBloques.map((s) => `- ${s.id} (${s.clientLie}) — manque : ${s.documentsManquants.join(", ")}`).join("\n") : "- Aucun · ✅"}
+
+## 🎂 Anniversaires de contrat (≤ 45 j)
+${anniv.length ? anniv.map((x) => `- ${x.c.numero} (${x.c.souscripteur}) — J-${x.j}`).join("\n") : "- Aucun · ✅"}`;
+
+    return { content: [{ type: "text", text: briefing }] };
   }
 );
 
