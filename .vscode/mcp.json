@@ -1,0 +1,9 @@
+{
+  "servers": {
+    "conseiller-assist": {
+      "type": "stdio",
+      "command": "node",
+      "args": ["${workspaceFolder}/dist/index.js"]
+    }
+  }
+}
